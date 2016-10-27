@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import VideoListItem from './video_list_item'; 
 
 class VideoList extends Component {
-
     render () {
         const videoItems = this.props.videos.map((video)=>{
             return (
-                <VideoListItem key={video.etag} video={video}/>
+                <VideoListItem
+                    onVideoSelect={this.props.onVideoSelect} 
+                    key={video.etag} 
+                    video={video}/>
             );
         });
 
