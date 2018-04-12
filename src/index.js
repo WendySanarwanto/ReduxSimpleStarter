@@ -13,12 +13,16 @@ const API_KEY = 'AIzaSyA6Tq00fL0wGv23sQwFOuTTxnKg_mgC2fA';
 // some HTML
 class App extends Component {
   state = {
-    videos: []
+    videos: [],
+    selectedVideo: null
   }
 
   componentDidMount() {
     YTSearch({ key: API_KEY, term: 'surfboards'}, (videos) => {
-      this.setState({ videos });
+      this.setState({ 
+        videos, 
+        selectedVideo: videos[0]
+      });
     });    
   }
 
@@ -26,7 +30,7 @@ class App extends Component {
     return (
       <div>
         <SearchBar />
-        <VideoDetail video={this.state.videos[0]}/>
+        <VideoDetail video={this.state.selectedVideo}/>
         <VideoList videos={this.state.videos} />
       </div>
     );
